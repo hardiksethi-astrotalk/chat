@@ -1,0 +1,663 @@
+:root {
+    --primary-bg: #f0f2f5;
+    --sidebar-bg: #ffffff;
+    --accent-color: #007AFF;
+    /* iOS Blue */
+    --text-primary: #111b21;
+    --text-secondary: #667781;
+    --whatsapp-bg: #EFE7DE;
+    --incoming-bubble: #ffffff;
+    --outgoing-bubble: #dcf8c6;
+    /* Classic WhatsApp Green */
+    --border-color: #e9edef;
+}
+
+body.dark-mode {
+    --primary-bg: #111b21;
+    --sidebar-bg: #202c33;
+    --text-primary: #e9edef;
+    --text-secondary: #8696a0;
+    --whatsapp-bg: #0b141a;
+    /* Dark WhatsApp bg */
+    --incoming-bubble: #202c33;
+    --outgoing-bubble: #005c4b;
+    --border-color: #2a3942;
+}
+
+body.dark-mode .upload-btn {
+    background: #2a3942;
+    border-color: #3b4a54;
+    color: #e9edef;
+}
+
+body.dark-mode .upload-btn:hover {
+    background: #3b4a54;
+}
+
+body.dark-mode .input-wrapper input {
+    background: #2a3942;
+    border-color: #2a3942;
+    color: white;
+}
+
+body.dark-mode .whatsapp-container {
+    background-image: none;
+    /* simple dark bg for now, or use dark wallpaper */
+    background-color: var(--whatsapp-bg);
+}
+
+body.dark-mode .status-bar,
+body.dark-mode .chat-header,
+body.dark-mode .chat-input-bar {
+    background: #202c33;
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #e9edef;
+}
+
+body.dark-mode .date-divider span {
+    background: #202c33;
+    color: #8696a0;
+}
+
+body.dark-mode .message.incoming .bubble {
+    color: #e9edef;
+}
+
+body.dark-mode .message.outgoing .bubble {
+    color: #e9edef;
+}
+
+body.dark-mode .status-icons i {
+    color: #e9edef;
+    /* Make status bar icons white in dark mode */
+}
+
+/* Secondary Button */
+.secondary-btn {
+    background: transparent;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    padding: 0.75rem;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.2s;
+}
+
+.secondary-btn:hover {
+    background: rgba(0, 122, 255, 0.1);
+}
+
+.secondary-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    border-color: #ccc;
+    color: #ccc;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--primary-bg);
+    height: 100vh;
+    overflow: hidden;
+    color: var(--text-primary);
+}
+
+.app-container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 320px;
+    background: var(--sidebar-bg);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    border-right: 1px solid var(--border-color);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.02);
+    z-index: 10;
+}
+
+.sidebar-header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.sidebar-header p {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.control-group h3 {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.upload-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: #f8f9fa;
+    border: 2px dashed #dde1e6;
+    padding: 2rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 500;
+}
+
+.upload-btn:hover {
+    border-color: var(--accent-color);
+    background: #f0f7ff;
+    color: var(--accent-color);
+}
+
+.file-info {
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+.input-wrapper {
+    margin-bottom: 1rem;
+}
+
+.input-wrapper label {
+    display: block;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #dde1e6;
+    border-radius: 8px;
+    font-family: inherit;
+}
+
+.primary-btn {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: opacity 0.2s;
+    margin-top: auto;
+}
+
+.primary-btn:hover {
+    opacity: 0.9;
+}
+
+/* Preview Area */
+.preview-area {
+    flex: 1;
+    display: flex;
+    align-items: flex-start;
+    /* Align top for long chats */
+    justify-content: center;
+    background: #eef1f4;
+    padding: 2rem;
+    overflow: auto;
+    gap: 2rem;
+    flex-wrap: wrap;
+    /* Allow wrapping on small screens */
+}
+
+.device-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.device-label {
+    font-weight: 600;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.download-action {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.whatsapp-container {
+    width: 375px;
+    height: 812px;
+    background: var(--whatsapp-bg);
+    background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png');
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    border-radius: 40px;
+    /* Modern phone rounded corners */
+    border: 8px solid #111;
+    /* Bezel */
+}
+
+/* Status Bar */
+.status-bar {
+    height: 44px;
+    background: #f6f6f6;
+    /* Translucent on real iOS, solid here for simplicity */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    font-size: 14px;
+    font-weight: 600;
+    z-index: 2;
+}
+
+.status-icons {
+    display: flex;
+    gap: 6px;
+}
+
+/* Chat Header */
+.chat-header {
+    height: 60px;
+    background: #f6f6f6;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px 0 8px;
+    z-index: 2;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.avatar-placeholder {
+    width: 36px;
+    height: 36px;
+    background: #ccc;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+    overflow: hidden;
+    /* Ensure image stays in circle */
+}
+
+.avatar-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.header-info h2 {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* Messages */
+.messages-container {
+    flex: 1;
+    padding: 10px 16px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.date-divider {
+    text-align: center;
+    margin: 16px 0;
+}
+
+.date-divider span {
+    background: rgba(225, 240, 255, 0.9);
+    padding: 4px 12px;
+    border-radius: 8px;
+    font-size: 11px;
+    color: #555;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.message {
+    display: flex;
+    margin-bottom: 2px;
+    max-width: 80%;
+}
+
+.message.incoming {
+    align-self: flex-start;
+}
+
+.message.outgoing {
+    align-self: flex-end;
+}
+
+.bubble {
+    padding: 6px 10px 8px 10px;
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    font-size: 14.5px;
+    line-height: 1.3;
+}
+
+.message.incoming .bubble {
+    background: var(--incoming-bubble);
+    border-top-left-radius: 0;
+}
+
+.message.outgoing .bubble {
+    background: var(--outgoing-bubble);
+    border-top-right-radius: 0;
+}
+
+.meta {
+    font-size: 11px;
+    color: #999;
+    float: right;
+    margin-left: 8px;
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Input Bar */
+.chat-input-bar {
+    height: 64px;
+    background: #f6f6f6;
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    /* gap: 16px; REMOVED to allow margin animation */
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.input-field {
+    flex: 1;
+    min-width: 0;
+    /* Critical for flex container to not expand */
+    height: 36px;
+    background: white;
+    border-radius: 18px;
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    /* Ensure nothing spills out */
+    justify-content: flex-end;
+    /* Push sticker to right */
+    padding-right: 8px;
+    /* Spacing for sticker */
+    margin-left: 16px;
+    /* Replaces gap */
+    margin-right: 16px;
+    /* Replaces gap for right icons, will be overridden by icon margins if adjacent? No, margin collapses in block, not flex. */
+    /* wait, margin-right on field pushes Camera away. */
+    /* Let's be precise: */
+    /* Plus (margin-right) | Field | Camera (margin-left) | Mic (margin-left) */
+    /* Actually simple: give every child margin-left: 16px except first? */
+    /* Or specific classes. */
+    margin: 0 8px 0 16px;
+    /* Gap on both sides of field */
+    transition: all 0.3s ease;
+    /* Smooth width adjustment */
+}
+
+/* Dark mode adjustment for input field if needed */
+body.dark-mode .input-field {
+    background: #202c33;
+    border-color: #2a3942;
+}
+
+.input-icon {
+    color: var(--accent-color);
+    font-size: 24px;
+    cursor: pointer;
+    /* Transition for slide out */
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    max-width: 30px;
+    /* Ensure width is animatable */
+    margin-left: 16px;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.input-icon:first-child {
+    margin-left: 0;
+    margin-right: 0;
+    /* Input field handles gap */
+}
+
+/* Hidden State for Animation */
+.input-icon.hidden-icon {
+    max-width: 0;
+    margin-left: 0;
+    opacity: 0;
+    transform: translateX(20px);
+    /* Slide Right */
+    pointer-events: none;
+}
+
+
+.sticker-icon {
+    color: #8e8e93;
+    font-size: 24px;
+    /* Uniform size */
+    cursor: pointer;
+}
+
+/* Instagram Theme Overrides */
+.instagram-theme {
+    background: #ffffff !important;
+    background-image: none !important;
+}
+
+.instagram-theme .chat-header {
+    background: #ffffff;
+    border-bottom: 0.5px solid #ececec;
+    height: 70px;
+    /* Slightly taller for IG header */
+    padding: 0 16px;
+}
+
+.ig-avatar-header {
+    width: 32px;
+    height: 32px;
+    margin-right: 8px;
+}
+
+.instagram-theme .header-left .sub-text {
+    display: block;
+    font-size: 11px;
+    color: #8e8e93;
+    font-weight: 400;
+}
+
+.instagram-theme .messages-container {
+    padding: 16px;
+}
+
+/* IG Messages */
+.instagram-theme .message {
+    align-items: flex-end;
+    /* Align avatar to bottom of message block */
+    gap: 8px;
+    /* Space for avatar */
+}
+
+.ig-avatar-msg {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #ccc;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.ig-avatar-msg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.instagram-theme .message.incoming .bubble {
+    background: #efefef;
+    color: #000;
+    border-radius: 22px;
+    padding: 12px 16px;
+    font-size: 15px;
+    box-shadow: none;
+    border-bottom-left-radius: 4px;
+    /* Slight distinct shape */
+}
+
+.instagram-theme .message.outgoing {
+    margin-left: auto;
+    /* Push right */
+}
+
+.instagram-theme .message.outgoing .bubble {
+    background: linear-gradient(90deg, #5B48F2 0%, #9D3DF3 100%);
+    color: white;
+    border-radius: 22px;
+    padding: 12px 16px;
+    font-size: 15px;
+    box-shadow: none;
+    border-bottom-right-radius: 4px;
+}
+
+.instagram-theme .message .meta {
+    display: none;
+    /* Hide per-message timestamp for cleaner look */
+}
+
+/* IG Input Bar */
+.ig-input-bar {
+    height: 60px;
+    background: white;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-top: none;
+}
+
+.camera-circle {
+    width: 36px;
+    height: 36px;
+    background: #0095f6;
+    /* IG Blue */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.ig-field {
+    background: #efefef;
+    border: none;
+    border-radius: 20px;
+    padding: 0 12px 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 40px;
+    flex: 1;
+    /* Ensure filled */
+}
+
+.ig-field .placeholder-text {
+    flex: 1;
+    color: #8e8e93;
+    font-size: 15px;
+    white-space: nowrap;
+    overflow: hidden;
+    /* text-overflow handled by JS simulation now */
+}
+
+.ig-field .input-icon {
+    color: #262626;
+    /* Dark icons inside field */
+    font-size: 22px;
+    margin-left: 8px;
+}
+
+/* Dark Mode Instagram */
+body.dark-mode .instagram-theme {
+    background: #000000 !important;
+}
+
+body.dark-mode .instagram-theme .chat-header,
+body.dark-mode .ig-input-bar {
+    background: #000000;
+    border-color: #262626;
+    color: white;
+}
+
+body.dark-mode .ig-field {
+    background: #262626;
+}
+
+body.dark-mode .ig-field .input-icon {
+    color: white;
+}
+
+body.dark-mode .instagram-theme .message.incoming .bubble {
+    background: #262626;
+    color: white;
+}
+
+.keyboard-img {
+    width: 100%;
+    display: none;
+    /* Hidden by default */
+    background: white;
+    /* Ensure bg behind keyboard if png transparent */
+    flex-shrink: 0;
+    /* Prevent keyboard from shrinking */
+}
+
+/* When Keyboard is Toggled */
+.show-keyboard .keyboard-img {
+    display: block;
+}
