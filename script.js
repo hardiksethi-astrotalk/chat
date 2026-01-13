@@ -162,7 +162,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 <span class="text">${escapeHtml(msg.message)}</span>
                 <span class="meta">
                     ${msg.timestamp}
-                    ${isMe ? '<i class="ph ph-checks" style="color: #34B7F1; font-weight: bold;"></i>' : ''}
+                    ${isMe ? `
+                    <svg viewBox="0 0 16 11" width="16" height="11" class="read-receipt-icon">
+                        <path d="M4.15 10.75L0.25 6.85L1.5 5.6L4.15 8.25L9.85 2.55L11.1 3.8L4.15 10.75Z" fill="#53bdeb"/>
+                        <path d="M9.15 10.75L7.9 9.5L10.55 6.85L14.7 2.7L15.95 3.95L9.15 10.75Z" fill="#53bdeb"/>
+                    </svg>` : ''}
                 </span>
             </div>
         `;
