@@ -220,9 +220,21 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetId = btn.getAttribute('data-target');
             const element = document.getElementById(targetId);
             const originalText = btn.innerHTML;
+
+            // Store original styles (if any inline styles existed) - though usually handled by CSS classes
+            const originalBorderRadius = element.style.borderRadius;
+            const originalBoxShadow = element.style.boxShadow;
+            const originalBorder = element.style.border;
+
             try {
                 btn.disabled = true;
                 btn.innerHTML = '<i class="ph ph-spinner ph-spin"></i> Generating...';
+
+                // Remove mobile frame visuals
+                element.style.borderRadius = '0';
+                element.style.boxShadow = 'none';
+                element.style.border = 'none';
+
                 const canvas = await html2canvas(element, { scale: 2, useCORS: true, backgroundColor: '#000000' });
                 const link = document.createElement('a');
                 link.download = `${targetId}-${Date.now()}.png`;
@@ -232,6 +244,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Screenshot failed:', err);
                 alert('Failed to generate screenshot');
             } finally {
+                // Restore original styles
+                element.style.borderRadius = originalBorderRadius;
+                element.style.boxShadow = originalBoxShadow;
+                element.style.border = originalBorder;
+
                 btn.disabled = false;
                 btn.innerHTML = originalText;
             }
