@@ -223,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
             try {
                 btn.disabled = true;
                 btn.innerHTML = '<i class="ph ph-spinner ph-spin"></i> Generating...';
-                const canvas = await html2canvas(element, { scale: 2, useCORS: true, backgroundColor: null });
+                const canvas = await html2canvas(element, { scale: 2, useCORS: true, backgroundColor: '#000000' });
                 const link = document.createElement('a');
                 link.download = `${targetId}-${Date.now()}.png`;
                 link.href = canvas.toDataURL('image/png');
